@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de perícia digital e computação forense com metodologia, cadeia de custódia e laudos."
+    />
+    <title>João | Perícia Digital</title>
+    <link rel="icon" href="assets/img/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Ir para início">
+          <img src="assets/img/logo.png" alt="Logo João" height="86" width="86" />
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu" id="nav-menu">
+          <a href="#areas">Áreas de atuação</a>
+          <a href="#metodologia">Metodologia</a>
+          <a href="#custodia">Cadeia de custódia</a>
+          <a href="#laudo">Laudo</a>
+          <a href="posts.html">Postagens</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container revelar" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">Perito em</p>
+          <h1>Forense computacional</h1>
+          <div class="lead-copy">
+            <p>
+              Muito prazer, sou o <strong>João Vitor</strong>, e quero dedicar este espaço a qualquer
+              pessoa interessada em conhecer um pouco melhor a <strong>perícia digital</strong> e o
+              meu trabalho.
+            </p>
+            <p>
+              Conheça as principais normas técnicas que regem nosso trabalho e as principais
+              ferramentas que o tornam íntegro. Contei, até aqui, com professores excelentes e
+              agradeço-lhes imensamente pelo aprendizado que, hoje, posso compartilhar aqui. Aproveite
+              a leitura.
+            </p>
+          </div>
+        </div>
+
+        <figure class="hero-photo-wrap">
+          <img
+            class="profile-photo"
+            src="assets/img/hero_photo.png"
+            alt="Retrato do perito João"
+            width="720"
+            height="720"
+            loading="eager"
+          />
+        </figure>
+      </section>
+
+      <section class="section container" id="areas">
+        <div class="section-heading centered revelar">
+          <h2>Áreas de atuação</h2>
+        </div>
+
+        <div class="cards-grid">
+          <article class="mini-card revelar">
+            <img src="assets/img/disco.svg" alt="" />
+            <h3>Discos e sistemas de arquivo</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/memoria.svg" alt="" />
+            <h3>Memória</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/mobile.svg" alt="" />
+            <h3>Dispositivos móveis</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/redes.svg" alt="" />
+            <h3>Redes</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/malware.svg" alt="" />
+            <h3>Malware</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/nuvem.svg" alt="" />
+            <h3>Nuvem</h3>
+          </article>
+
+          <article class="mini-card revelar">
+            <img src="assets/img/email.svg" alt="" />
+            <h3>Mensagens</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="methodology section" id="metodologia">
+        <div class="methodology-scroll">
+          <div class="methodology-sticky">
+            <div class="container methodology-inner">
+              <div class="section-heading methodology-heading revelar">
+                <h2>Metodologia pericial</h2>
+              </div>
+
+              <p class="methodology-intro revelar">
+                O trabalho pericial exige o conhecimento de procedimentos padronizados de manuseio de
+                evidências digitais, antes mesmo de pegar um dispositivo em mãos. Ao dominá-los,
+                garantimos integridade tanto à evidência digital, quanto ao processo judicial.
+              </p>
+
+              <p class="methodology-intro revelar">
+                A ISO/IEC 27037, homologada pela ABNT, é a principal norma que rege os procedimentos de
+                manuseio de evidências digitais, com diretrizes para identificação, coleta, aquisição e
+                preservação de evidências digitais em processos judiciais.
+              </p>
+
+              <div class="methodology-stages">
+                <div class="methodology-stage is-active" data-methodology-stage="handling">
+                  <h3 class="process-stage-title revelar">Processos de manuseio</h3>
+                  <p class="process-stage-description revelar">
+                    Uma evidência pode ser frágil em sua natureza e adulterada ou destruída por exame
+                    impróprio. A ISO 27037 dá diretrizes específicas para quatro etapas de manuseio:
+                  </p>
+                  <div class="process-grid" aria-label="Etapas do manuseio de evidências">
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/identificacao.svg" alt="" />
+                      </div>
+                      <h3>Identificação</h3>
+                      <p>A pesquisa, reconhecimento e documentação da potencial evidência digital, antes de qualquer outro exame.</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/coleta.svg" alt="" />
+                      </div>
+                      <h3>Coleta</h3>
+                      <p>Remoção do dispositivo com evidência digital para um ambiente controlado. Não aplicável, dependendo do contexto.</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/aquisicao.svg" alt="" />
+                      </div>
+                      <h3>Aquisição</h3>
+                      <p>Produção da cópia forense e verificação da integridade da réplica.</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/preservacao.svg" alt="" />
+                      </div>
+                      <h3>Preservação</h3>
+                      <p>Configura a guarda do dispositivo digital contra espoliação ou adulteração.</p>
+                    </article>
+                  </div>
+                  <span class="methodology-direction methodology-direction-next" aria-hidden="true">→</span>
+                </div>
+
+                <div class="methodology-stage" data-methodology-stage="principles">
+                  <h3 class="process-stage-title revelar">Princípios da evidência digital</h3>
+                  <p class="process-stage-description revelar">
+                    A ISO dá as principais diretrizes para o manuseio da evidência, destacando as
+                    responsabilidades do Primeiro Interventor da Evidência Digital (DEFR) e os princípios
+                    a serem seguidos durante <strong>todos os procedimentos anteriores</strong>:
+                  </p>
+                  <div class="process-grid" aria-label="Princípios da evidência digital">
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/auditabilidade.svg" alt="" />
+                      </div>
+                      <h3>Auditabilidade</h3>
+                      <p>Recomenda-se que seja possível para um assistente independente ou outra parte autorizada interessada avaliar as atividades realizadas por um DEFR.</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/repetibilidade.svg" alt="" />
+                      </div>
+                      <h3>Repetibilidade</h3>
+                      <p>Convém que um DEFR seja capaz de realizar todos os processos descritos na documentação e, a partir dos mesmos procedimentos e instrumentos, alcançar os mesmos resultados.</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/reprodutibilidade.svg" alt="" />
+                      </div>
+                      <h3>Reprodutibilidade</h3>
+                      <p>A reprodutibilidade é estabelecida quando os mesmos resultados de testes são produzidos sob a utilização de mesmos métodos, porém com diferentes instrumentos (ex: ferramentas de aquisição, hashing).</p>
+                    </article>
+                    <article class="process-card revelar">
+                      <div class="process-icon" aria-hidden="true">
+                        <img src="assets/img/justificabilidade.svg" alt="" />
+                      </div>
+                      <h3>Justificabilidade</h3>
+                      <p>A justificativa pode ser alcançada demonstrando que a decisão foi a melhor escolha para obter toda a potencial evidência digital.</p>
+                    </article>
+                  </div>
+                  <span class="methodology-direction methodology-direction-previous" aria-hidden="true">←</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chain-section" id="custodia">
+        <div class="container">
+          <div class="section-heading centered revelar">
+            <h2>Cadeia de custódia</h2>
+          </div>
+
+          <div class="document-stage">
+            <article class="notepad document-visual revelar" aria-label="Registro de atividades da análise pericial">
+              <div class="notepad-header">
+                <span class="notepad-indicator"></span>
+                <strong>REGISTRO DE ANÁLISE</strong>
+              </div>
+              <ol class="notepad-logs">
+                <li data-text="[14-10-2025 09:12] Recebimento de mídia e conferência do lacre.">[14-10-2025 09:12] Recebimento de mídia e conferência do lacre.</li>
+                <li data-text="[14-10-2025 09:25] Registro fotográfico do dispositivo recebido.">[14-10-2025 09:25] Registro fotográfico do dispositivo recebido.</li>
+                <li data-text="[14-10-2025 09:41] Catalogação da evidência digital.">[14-10-2025 09:41] Catalogação da evidência digital.</li>
+                <li data-text="[14-10-2025 10:03] Isolamento do dispositivo para análise.">[14-10-2025 10:03] Isolamento do dispositivo para análise.</li>
+                <li data-text="[14-10-2025 10:28] Aquisição forense dos dados do equipamento.">[14-10-2025 10:28] Aquisição forense dos dados do equipamento.</li>
+                <li data-text="[14-10-2025 11:15] Verificação da integridade da imagem.">[14-10-2025 11:15] Verificação da integridade da imagem.</li>
+                <li data-text="[14-10-2025 11:37] Indexação dos arquivos extraídos.">[14-10-2025 11:37] Indexação dos arquivos extraídos.</li>
+                <li data-text="[14-10-2025 14:06] Análise de artefatos do sistema operacional.">[14-10-2025 14:06] Análise de artefatos do sistema operacional.</li>
+                <li data-text="[15-10-2025 09:18] Revisão dos registros de atividade.">[15-10-2025 09:18] Revisão dos registros de atividade.</li>
+                <li data-text="[15-10-2025 10:02] Armazenamento seguro e encerramento da análise.">[15-10-2025 10:02] Armazenamento seguro e encerramento da análise.</li>
+              </ol>
+            </article>
+            <p class="document-placeholder revelar">
+              Um perito digital não só se responsabiliza pela evidência digital e seu manuseio, mas
+              também por devidas precauções no local do incidente ou da coleta, documentação de cada
+              ação feita, principalmente a respeito da cronologia de movimento e do manuseio da
+              potencial evidência digital, caracterizados pela <strong>cadeia de custódia</strong>.
+            </p>
+            <figure class="custody-visual document-visual revelar">
+              <img src="assets/img/custodia.png" alt="Formulário de cadeia de custódia preenchido como exemplo" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section report-section" id="laudo">
+        <div class="container">
+          <div class="section-heading report-heading revelar">
+            <h2>Laudo pericial</h2>
+          </div>
+
+          <div class="report-layout">
+            <div class="report-art revelar">
+              <img src="assets/img/laudo_blur.png" alt="Prévia de um laudo pericial digital" />
+            </div>
+
+            <div class="report-content">
+              <p class="report-intro revelar">
+                O laudo deve ser estruturado de forma compreensível, verificável por outro perito e
+                objetivo na resposta aos quesitos.
+              </p>
+              <div class="report-bullets revelar">
+                <ol>
+                  <li><strong>Identificação</strong><p>Processo, partes, juízo, nomeação e data.</p></li>
+                  <li><strong>Objeto da perícia</strong><p>O que foi determinado pelo juízo e o escopo do exame.</p></li>
+                  <li><strong>Material examinado</strong><p>Descrição de cada item, com identificação única, estado no recebimento e hashes.</p></li>
+                  <li><strong>Metodologia</strong><p>Procedimentos e ferramentas, com versões, e as normas adotadas.</p></li>
+                  <li><strong>Análise técnica</strong><p>Achados organizados, com evidências e referências.</p></li>
+                  <li><strong>Resposta aos quesitos</strong><p>Cada quesito reproduzido e respondido de forma direta e fundamentada, remetendo à análise.</p></li>
+                  <li value="8"><strong>Limitações e ressalvas</strong><p>O que não foi possível verificar e por quê.</p></li>
+                  <li><strong>Anexos</strong><p>Logs, capturas de tela, relatórios de ferramenta, termos de cadeia de custódia.</p></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section case-section" id="caso-simulado">
+        <div class="container">
+          <div class="case-card revelar">
+            <span class="case-tag">Caso simulado</span>
+            <h2>Dispositivo corporativo em ambiente isolado</h2>
+            <p>
+              Cenário fictício baseado em material público, com análise de arquivos de sistema,
+              histórico de navegação e registros de login em um computador de uso corporativo.
+            </p>
+            <div class="case-tags">
+              <span>Windows</span>
+              <span>Cadeia de custódia</span>
+              <span>Laudo</span>
+            </div>
+            <a class="case-posts-tab" href="posts.html">
+              Fiz algumas <strong>outras postagens</strong> com análises detalhadas de outros casos,
+              ferramentas e informações. Dê uma olhada!
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contato">
+        <div class="container">
+          <div class="contact-layout">
+            <div class="contact-copy revelar">
+              <h2>Entre em contato</h2>
+              <p>
+                Para dúvidas técnicas, solicitações de materiais ou comentários sobre metodologias,
+                utilize o seguinte formulário.
+              </p>
+            </div>
+
+            <form
+              class="contact-form revelar"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              novalidate
+            >
+              <input
+                id="access_key"
+                name="access_key"
+                type="hidden"
+                value="1258c969-a3c2-465f-bd9d-c2bee5d01f5f"
+              />
+              <div class="field-group">
+                <label for="name">Nome</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+
+              <div class="field-group">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+
+              <div class="field-group">
+                <label for="subject">Assunto</label>
+                <input id="subject" name="subject" type="text" required />
+              </div>
+
+              <div class="field-group">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+
+              <div class="field-group honeypot">
+                <label for="website">Website</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <button type="submit">Enviar</button>
+              <p id="form-status" class="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-profile">
+          <img
+            class="footer-avatar"
+            src="assets/img/footer.jpg"
+            alt="Retrato de João Vitor Topan"
+            width="160"
+            height="160"
+          />
+          <div class="footer-profile-copy">
+            <p class="footer-title">João Vitor Topan</p>
+            <p>
+              Obrigado por visitar este portfolio. Sou formado em Sistemas de Informação pela
+              Universidade de São Paulo (USP), completei um MBA em Cibersegurança na Faculdade de
+              Informática e Administração Paulista (FIAP) e, hoje, depois de ter trabalhado como
+              desenvolvedor de software por alguns anos, estudo na Academia Forense Digital (AFD) a
+              perícia digital e suas subáreas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
