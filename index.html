@@ -42,7 +42,6 @@
           <a href="#metodologia">Metodologia</a>
           <a href="#custodia">Cadeia de custódia</a>
           <a href="#laudo">Laudo</a>
-          <a href="posts.html">Postagens</a>
           <a href="#contato">Contato</a>
         </div>
       </nav>
@@ -259,9 +258,126 @@
               ação feita, principalmente a respeito da cronologia de movimento e do manuseio da
               potencial evidência digital, caracterizados pela <strong>cadeia de custódia</strong>.
             </p>
-            <figure class="custody-visual document-visual revelar">
-              <img src="assets/img/custodia.png" alt="Formulário de cadeia de custódia preenchido como exemplo" />
-            </figure>
+            <article
+              class="custody-form document-visual revelar"
+              aria-label="Exemplo animado de formulário de cadeia de custódia"
+            >
+              <h3 class="custody-form-title">Evidência eletrônica</h3>
+              <p class="custody-form-subtitle">Formulário de cadeia de custódia</p>
+
+              <div class="custody-fields">
+                <div class="custody-field">
+                  <span class="custody-label">Nº do processo</span>
+                  <span class="custody-value" data-text="0001234-56.2025.8.26.0100">0001234-56.2025.8.26.0100</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Juízo</span>
+                  <span class="custody-value" data-text="1ª Vara Cível">1ª Vara Cível</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Vara e comarca</span>
+                  <span class="custody-value" data-text="Foro Central de São Paulo">Foro Central de São Paulo</span>
+                </div>
+                <div class="custody-field custody-field-wide">
+                  <span class="custody-label">Nome do perito</span>
+                  <span class="custody-value" data-text="João Topan">João Topan</span>
+                </div>
+              </div>
+
+              <h4 class="custody-section-title">Dados do equipamento</h4>
+              <div class="custody-fields custody-equipment-fields">
+                <div class="custody-field">
+                  <span class="custody-label">Marca</span>
+                  <span class="custody-value" data-text="Dell">Dell</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Descrição</span>
+                  <span class="custody-value" data-text="Notebook Dell Inspiron 15">Notebook Dell Inspiron 15</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Fabricante</span>
+                  <span class="custody-value" data-text="Dell">Dell</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Modelo</span>
+                  <span class="custody-value" data-text="Inspiron 15 3511">Inspiron 15 3511</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Núm. de série</span>
+                  <span class="custody-value" data-text="8F3K9V2">8F3K9V2</span>
+                </div>
+              </div>
+
+              <h4 class="custody-section-title">Detalhes do equipamento</h4>
+              <div class="custody-fields custody-details-fields">
+                <div class="custody-field">
+                  <span class="custody-label">Data/hora</span>
+                  <span class="custody-value" data-text="14/10/2025 09:18">14/10/2025 09:18</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Criado por</span>
+                  <span class="custody-value" data-text="João Topan">João Topan</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Método usado</span>
+                  <span class="custody-value" data-text="Imagem forense">Imagem forense</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Nome da imagem</span>
+                  <span class="custody-value" data-text="cliente_20251014.E01">cliente_20251014.E01</span>
+                </div>
+                <div class="custody-field">
+                  <span class="custody-label">Drive</span>
+                  <span class="custody-value" data-text="SSD 512 GB">SSD 512 GB</span>
+                </div>
+                <div class="custody-field custody-field-wide">
+                  <span class="custody-label">HASH</span>
+                  <span class="custody-value" data-text="a3f9e2d4b6c7f8e9d0e1f2a3b4c5d6e7f8a9b0c1">a3f9e2d4b6c7f8e9d0e1f2a3b4c5d6e7f8a9b0c1</span>
+                </div>
+              </div>
+
+              <h4 class="custody-section-title">Cadeia de custódia</h4>
+              <table class="custody-handoffs">
+                <thead>
+                  <tr>
+                    <th>Destino</th>
+                    <th>Data/hora</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Motivo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="custody-value" data-text="Laboratório Forense">Laboratório Forense</span></td>
+                    <td><span class="custody-value" data-text="14/10/2025 09:30">14/10/2025 09:30</span></td>
+                    <td><span class="custody-value" data-text="João Topan">João Topan</span></td>
+                    <td><span class="custody-value" data-text="Mariana Silva">Mariana Silva</span></td>
+                    <td><span class="custody-value" data-text="Recebimento do material">Recebimento do material</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="custody-value" data-text="Laboratório Forense">Laboratório Forense</span></td>
+                    <td><span class="custody-value" data-text="14/10/2025 11:15">14/10/2025 11:15</span></td>
+                    <td><span class="custody-value" data-text="Mariana Silva">Mariana Silva</span></td>
+                    <td><span class="custody-value" data-text="Carlos Almeida">Carlos Almeida</span></td>
+                    <td><span class="custody-value" data-text="Análise pericial">Análise pericial</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="custody-value" data-text="Arquivo Técnico">Arquivo Técnico</span></td>
+                    <td><span class="custody-value" data-text="14/10/2025 17:40">14/10/2025 17:40</span></td>
+                    <td><span class="custody-value" data-text="Carlos Almeida">Carlos Almeida</span></td>
+                    <td><span class="custody-value" data-text="João Topan">João Topan</span></td>
+                    <td><span class="custody-value" data-text="Finalização da cadeia">Finalização da cadeia</span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="custody-signatures" aria-label="Responsáveis pela entrega, recebimento e análise">
+                <div><strong>Entrega</strong><span>João Topan</span><small>14/10/2025</small></div>
+                <div><strong>Recebimento</strong><span>Mariana Silva</span><small>14/10/2025</small></div>
+                <div><strong>Análise</strong><span>Carlos Almeida</span><small>15/10/2025</small></div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -274,7 +390,18 @@
 
           <div class="report-layout">
             <div class="report-art revelar">
-              <img src="assets/img/laudo_blur.png" alt="Prévia de um laudo pericial digital" />
+              <iframe
+                class="report-pdf"
+                name="laudo-pdf-viewer"
+                src="about:blank"
+                data-src="assets/img/laudo_exemplo.pdf"
+                title="Visualizador do modelo de laudo pericial em PDF"
+              >
+                <p>
+                  Seu navegador não conseguiu exibir o PDF.
+                  <a href="assets/img/laudo_exemplo.pdf">Abrir o laudo pericial</a>.
+                </p>
+              </iframe>
             </div>
 
             <div class="report-content">
@@ -284,14 +411,46 @@
               </p>
               <div class="report-bullets revelar">
                 <ol>
-                  <li><strong>Identificação</strong><p>Processo, partes, juízo, nomeação e data.</p></li>
-                  <li><strong>Objeto da perícia</strong><p>O que foi determinado pelo juízo e o escopo do exame.</p></li>
-                  <li><strong>Material examinado</strong><p>Descrição de cada item, com identificação única, estado no recebimento e hashes.</p></li>
-                  <li><strong>Metodologia</strong><p>Procedimentos e ferramentas, com versões, e as normas adotadas.</p></li>
-                  <li><strong>Análise técnica</strong><p>Achados organizados, com evidências e referências.</p></li>
-                  <li><strong>Resposta aos quesitos</strong><p>Cada quesito reproduzido e respondido de forma direta e fundamentada, remetendo à análise.</p></li>
-                  <li value="8"><strong>Limitações e ressalvas</strong><p>O que não foi possível verificar e por quê.</p></li>
-                  <li><strong>Anexos</strong><p>Logs, capturas de tela, relatórios de ferramenta, termos de cadeia de custódia.</p></li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=1" target="laudo-pdf-viewer">
+                      <strong>Identificação</strong><p>Processo, partes, juízo, nomeação e data.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=2" target="laudo-pdf-viewer">
+                      <strong>Objeto da perícia</strong><p>O que foi determinado pelo juízo e o escopo do exame.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=3" target="laudo-pdf-viewer">
+                      <strong>Material examinado</strong><p>Descrição de cada item, com identificação única, estado no recebimento e hashes.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=3" target="laudo-pdf-viewer">
+                      <strong>Metodologia</strong><p>Procedimentos e ferramentas, com versões, e as normas adotadas.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=5" target="laudo-pdf-viewer">
+                      <strong>Análise técnica</strong><p>Achados organizados, com evidências e referências.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=11" target="laudo-pdf-viewer">
+                      <strong>Resposta aos quesitos</strong><p>Cada quesito reproduzido e respondido de forma direta e fundamentada, remetendo à análise.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=14" target="laudo-pdf-viewer">
+                      <strong>Limitações e ressalvas</strong><p>O que não foi possível verificar e por quê.</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=14" target="laudo-pdf-viewer">
+                      <strong>Anexos</strong><p>Logs, capturas de tela, relatórios de ferramenta, termos de cadeia de custódia.</p>
+                    </a>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -303,20 +462,13 @@
         <div class="container">
           <div class="case-card revelar">
             <span class="case-tag">Caso simulado</span>
-            <h2>Dispositivo corporativo em ambiente isolado</h2>
+            <h2>Mapeamento da cadeia de ataque completa</h2>
             <p>
-              Cenário fictício baseado em material público, com análise de arquivos de sistema,
-              histórico de navegação e registros de login em um computador de uso corporativo.
+              Uma empresa que mantém dados críticos de clientes reportou um incidente de segurança significativo: um ataque de ransomware, numa cadeia de ataque sofisticada.
             </p>
-            <div class="case-tags">
-              <span>Windows</span>
-              <span>Cadeia de custódia</span>
-              <span>Laudo</span>
-            </div>
-            <a class="case-posts-tab" href="posts.html">
-              Fiz algumas <strong>outras postagens</strong> com análises detalhadas de outros casos,
-              ferramentas e informações. Dê uma olhada!
-            </a>
+            <p>
+              Acima, deixo um exemplo de laudo pericial, elaborado a partir de informações fictícias e baseado em um laboratório de segurança oferecido pela plataforma <a href="https://cyberdefenders.org" target="_blank" rel="noopener noreferrer">cyberdefenders</a>.
+            </p>
           </div>
         </div>
       </section>

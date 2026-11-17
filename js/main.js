@@ -203,6 +203,107 @@ function setupCustodyLogs() {
   updateLogs();
 }
 
+function setupCustodyForm() {
+  const form = document.querySelector(".custody-form");
+  const values = [...(form?.querySelectorAll(".custody-value[data-text]") || [])];
+
+  if (!form || values.length === 0) {
+    return;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  let animationId = 0;
+  let isTyping = false;
+
+  const clearValues = () => {
+    values.forEach((value) => {
+      value.textContent = "";
+    });
+  };
+
+  const fillValues = async (currentAnimationId) => {
+    for (const value of values) {
+      if (currentAnimationId !== animationId) {
+        return;
+      }
+
+      const text = value.dataset.text || "";
+      value.textContent = "";
+
+      for (const character of text) {
+        if (currentAnimationId !== animationId) {
+          return;
+        }
+        value.textContent += character;
+        await new Promise((resolve) => window.setTimeout(resolve, 7));
+      }
+
+      await new Promise((resolve) => window.setTimeout(resolve, 80));
+    }
+  };
+
+  clearValues();
+
+  function updateValues() {
+    if (isInRevealViewport(form)) {
+      if (!isTyping) {
+        isTyping = true;
+        animationId += 1;
+        fillValues(animationId);
+      }
+    } else {
+      animationId += 1;
+      isTyping = false;
+      clearValues();
+    }
+  }
+
+  window.addEventListener("scroll", updateValues, { passive: true });
+  window.addEventListener("resize", updateValues);
+  updateValues();
+}
+
+function setupReportAnchors() {
+  const viewer = document.querySelector(".report-pdf");
+  const links = document.querySelectorAll(".report-section-link");
+
+  if (!viewer || links.length === 0) {
+    return;
+  }
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const pdfUrl = new URL(link.href);
+      pdfUrl.searchParams.set("jump", String(Date.now()));
+      viewer.src = pdfUrl.toString();
+      viewer.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+}
+
+function setupReportViewer() {
+  const viewer = document.querySelector(".report-pdf");
+  const source = viewer?.dataset.src;
+
+  if (!viewer || !source || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const visibilityThreshold = 0.5;
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.intersectionRatio >= visibilityThreshold)) {
+      viewer.src = source;
+      observer.disconnect();
+    }
+  }, { threshold: visibilityThreshold });
+
+  observer.observe(viewer);
+}
+
 function setupForm() {
   const form = document.querySelector(".contact-form");
   const status = document.getElementById("form-status");
@@ -286,5 +387,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
   setupMethodologySequence();
   setupCustodyLogs();
+  setupCustodyForm();
+  setupReportViewer();
+  setupReportAnchors();
   setupForm();
 });
