@@ -6,27 +6,35 @@ function isInRevealViewport(element) {
     Number.parseFloat(
       window.getComputedStyle(document.documentElement).getPropertyValue("--navbar-height")
     ) || 0;
-  const revealOffset = 24;
 
-  return (
-    rect.bottom > navbarHeight + revealOffset &&
-    rect.top < window.innerHeight * 0.86 - revealOffset
-  );
+  return rect.bottom > navbarHeight + 24 && rect.top < window.innerHeight * 0.86 - 24;
 }
 
 function setupReveal() {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const elements = [...document.querySelectorAll(".revelar")];
 
-  if (reduceMotion) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     elements.forEach((element) => element.classList.add("visivel"));
     return;
   }
 
+  let previousScrollY = window.scrollY;
+
   function updateReveals() {
+    const scrollingDown = window.scrollY >= previousScrollY;
+
     elements.forEach((element) => {
-      element.classList.toggle("visivel", isInRevealViewport(element));
+      if (scrollingDown && isInRevealViewport(element)) {
+        element.classList.add("visivel");
+      } else if (!scrollingDown) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top >= window.innerHeight * 0.86) {
+          element.classList.remove("visivel");
+        }
+      }
     });
+
+    previousScrollY = window.scrollY;
   }
 
   window.addEventListener("scroll", updateReveals, { passive: true });
@@ -55,253 +63,165 @@ function setupNavigation() {
   });
 }
 
-function setupMethodologySequence() {
-  const scrollContainer = document.querySelector(".methodology-scroll");
-  const sticky = document.querySelector(".methodology-sticky");
-  const stages = [...document.querySelectorAll("[data-methodology-stage]")];
-  const handlingGrid = document.querySelector(
-    '[data-methodology-stage="handling"] .process-grid'
-  );
-  const pinDuration = 320;
-  const stageSwitchOffset = 190;
+function setupAreasCarousel() {
+  const carousel = document.querySelector(".areas-carousel");
+  const track = document.getElementById("areas-track");
+  const cards = [...document.querySelectorAll(".area-card")];
+  const indicators = carousel?.querySelector(".carousel-indicators");
+  const previous = carousel?.querySelector('[data-carousel="previous"]');
+  const next = carousel?.querySelector('[data-carousel="next"]');
 
-  if (!scrollContainer || !sticky || !handlingGrid || stages.length !== 2) {
+  if (!carousel || !track || cards.length === 0 || !indicators || !previous || !next) {
     return;
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    stages.forEach((stage) => {
-      stage.classList.add("is-active");
+  cards.forEach((card, index) => {
+    const indicator = document.createElement("button");
+    indicator.type = "button";
+    indicator.className = "carousel-indicator";
+    indicator.setAttribute("aria-label", `Ir para a área ${index + 1}`);
+    indicator.addEventListener("click", () => {
+      cards[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      cards[index].focus({ preventScroll: true });
     });
-    return;
+    indicators.appendChild(indicator);
+  });
+
+  const indicatorButtons = [...indicators.querySelectorAll("button")];
+
+  function updateIndicators() {
+    const trackLeft = track.getBoundingClientRect().left;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    indicatorButtons.forEach((button, index) => {
+      button.classList.toggle("is-active", index === closestIndex);
+      button.setAttribute("aria-current", index === closestIndex ? "true" : "false");
+    });
+
+    previous.disabled = closestIndex === 0;
+    next.disabled = closestIndex === cards.length - 1;
   }
 
-  let activeStage;
-  let maxStageHeight = 0;
-  let handlingGridPageTop = 0;
+  function moveBy(direction) {
+    const trackLeft = track.getBoundingClientRect().left;
+    let targetIndex = 0;
+    let closestDistance = Infinity;
 
-  function measureStages() {
-    maxStageHeight = sticky.offsetHeight;
-    const regionTop = scrollContainer.getBoundingClientRect().top + window.scrollY;
-    handlingGridPageTop =
-      regionTop +
-      handlingGrid.getBoundingClientRect().top -
-      sticky.getBoundingClientRect().top;
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        targetIndex = index;
+      }
+    });
+
+    const target = cards[Math.min(cards.length - 1, Math.max(0, targetIndex + direction))];
+    target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
   }
 
-  function updateStage(remeasure = false) {
-    if (remeasure) {
-      maxStageHeight = 0;
-      measureStages();
-    }
+  previous.addEventListener("click", () => moveBy(-1));
+  next.addEventListener("click", () => moveBy(1));
+  track.addEventListener("scroll", updateIndicators, { passive: true });
+  window.addEventListener("resize", updateIndicators);
+  updateIndicators();
+}
 
-    const stickyTop =
-      Number.parseFloat(
-        window.getComputedStyle(document.documentElement).getPropertyValue("--navbar-height")
-      ) || 0;
-    const regionTop = scrollContainer.getBoundingClientRect().top + window.scrollY;
-    const pinStart = regionTop - stickyTop;
-    const scrollY = window.scrollY;
-    const canPin = window.innerHeight - stickyTop >= maxStageHeight;
-    const switchAt = canPin
-      ? pinStart + stageSwitchOffset
-      : handlingGridPageTop - window.innerHeight * 0.55 + stageSwitchOffset;
-    const showPrinciples = scrollY >= switchAt;
-    const nextStage = showPrinciples ? "principles" : "handling";
-    const stageChanged = nextStage !== activeStage;
+function setupPrinciples() {
+  const toggles = [...document.querySelectorAll(".principle-toggle")];
 
-    if (stageChanged) {
-      stages.forEach((stage) => {
-        stage.classList.toggle("is-active", stage.dataset.methodologyStage === nextStage);
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+      toggles.forEach((item) => {
+        item.setAttribute("aria-expanded", "false");
+        const panel = document.getElementById(item.getAttribute("aria-controls"));
+        if (panel) {
+          panel.hidden = true;
+        }
       });
-      activeStage = nextStage;
-    }
 
-    const activePinDuration = canPin ? pinDuration : 0;
-    const pinEnd = pinStart + activePinDuration;
-
-    if (stageChanged || remeasure) {
-      scrollContainer.style.minHeight = `${sticky.offsetHeight + activePinDuration}px`;
-    }
-
-    const shouldPin = canPin && scrollY >= pinStart && scrollY <= pinEnd;
-    scrollContainer.classList.toggle("is-pinned", shouldPin);
-    scrollContainer.classList.toggle("is-released", canPin && scrollY > pinEnd);
-  }
-
-  window.addEventListener("scroll", updateStage, { passive: true });
-  window.addEventListener("resize", () => updateStage(true));
-  window.addEventListener("load", () => updateStage(true), { once: true });
-  updateStage(true);
-}
-
-function setupCustodyLogs() {
-  const notepad = document.querySelector(".notepad");
-  const entries = notepad?.querySelectorAll(".notepad-logs li");
-
-  if (!notepad || !entries || entries.length === 0) {
-    return;
-  }
-
-  let animationId = 0;
-  let isTyping = false;
-
-  const clearLogs = () => {
-    entries.forEach((entry) => {
-      entry.textContent = "";
-    });
-  };
-
-  const fillLogs = async (currentAnimationId) => {
-    for (const entry of entries) {
-      if (currentAnimationId !== animationId) {
-        return;
-      }
-
-      const text = entry.dataset.text || "";
-      entry.textContent = "";
-
-      for (const character of text) {
-        if (currentAnimationId !== animationId) {
-          return;
+      if (!isOpen) {
+        toggle.setAttribute("aria-expanded", "true");
+        const panel = document.getElementById(toggle.getAttribute("aria-controls"));
+        if (panel) {
+          panel.hidden = false;
         }
-        entry.textContent += character;
-        await new Promise((resolve) => window.setTimeout(resolve, 6));
       }
-
-      await new Promise((resolve) => window.setTimeout(resolve, 140));
-    }
-  };
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    entries.forEach((entry) => {
-      entry.textContent = entry.dataset.text || "";
-    });
-    return;
-  }
-
-  entries.forEach((entry) => {
-    entry.textContent = "";
-  });
-
-  function updateLogs() {
-    if (isInRevealViewport(notepad)) {
-      if (!isTyping) {
-        isTyping = true;
-        animationId += 1;
-        fillLogs(animationId);
-      }
-    } else {
-      animationId += 1;
-      isTyping = false;
-      clearLogs();
-    }
-  }
-
-  window.addEventListener("scroll", updateLogs, { passive: true });
-  window.addEventListener("resize", updateLogs);
-  updateLogs();
-}
-
-function setupCustodyForm() {
-  const form = document.querySelector(".custody-form");
-  const values = [...(form?.querySelectorAll(".custody-value[data-text]") || [])];
-
-  if (!form || values.length === 0) {
-    return;
-  }
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return;
-  }
-
-  let animationId = 0;
-  let isTyping = false;
-
-  const clearValues = () => {
-    values.forEach((value) => {
-      value.textContent = "";
-    });
-  };
-
-  const fillValues = async (currentAnimationId) => {
-    for (const value of values) {
-      if (currentAnimationId !== animationId) {
-        return;
-      }
-
-      const text = value.dataset.text || "";
-      value.textContent = "";
-
-      for (const character of text) {
-        if (currentAnimationId !== animationId) {
-          return;
-        }
-        value.textContent += character;
-        await new Promise((resolve) => window.setTimeout(resolve, 7));
-      }
-
-      await new Promise((resolve) => window.setTimeout(resolve, 80));
-    }
-  };
-
-  clearValues();
-
-  function updateValues() {
-    if (isInRevealViewport(form)) {
-      if (!isTyping) {
-        isTyping = true;
-        animationId += 1;
-        fillValues(animationId);
-      }
-    } else {
-      animationId += 1;
-      isTyping = false;
-      clearValues();
-    }
-  }
-
-  window.addEventListener("scroll", updateValues, { passive: true });
-  window.addEventListener("resize", updateValues);
-  updateValues();
-}
-
-function setupReportAnchors() {
-  const viewer = document.querySelector(".report-pdf");
-  const links = document.querySelectorAll(".report-section-link");
-
-  if (!viewer || links.length === 0) {
-    return;
-  }
-
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const pdfUrl = new URL(link.href);
-      pdfUrl.searchParams.set("jump", String(Date.now()));
-      viewer.src = pdfUrl.toString();
-      viewer.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   });
 }
 
-function setupReportViewer() {
-  const viewer = document.querySelector(".report-pdf");
-  const source = viewer?.dataset.src;
+function setupNotesCarousel() {
+  const track = document.getElementById("methodology-notes-track");
+  const notes = [...document.querySelectorAll(".methodology-note")];
+  const controls = document.querySelector(".notes-controls");
+  const indicators = controls?.querySelector(".carousel-indicators");
+  const previous = controls?.querySelector('[data-notes="previous"]');
+  const next = controls?.querySelector('[data-notes="next"]');
 
-  if (!viewer || !source || !("IntersectionObserver" in window)) {
+  if (!track || notes.length === 0 || !indicators || !previous || !next) {
     return;
   }
 
-  const visibilityThreshold = 0.5;
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((entry) => entry.intersectionRatio >= visibilityThreshold)) {
-      viewer.src = source;
-      observer.disconnect();
-    }
-  }, { threshold: visibilityThreshold });
+  notes.forEach((note, index) => {
+    const indicator = document.createElement("button");
+    indicator.type = "button";
+    indicator.className = "carousel-indicator";
+    indicator.setAttribute("aria-label", `Ir para a informação ${index + 1}`);
+    indicator.addEventListener("click", () => {
+      note.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    });
+    indicators.appendChild(indicator);
+  });
 
-  observer.observe(viewer);
+  const indicatorButtons = [...indicators.querySelectorAll("button")];
+
+  function getCurrentIndex() {
+    const trackLeft = track.getBoundingClientRect().left;
+    return notes.reduce((closestIndex, note, index) => {
+      const currentDistance = Math.abs(notes[closestIndex].getBoundingClientRect().left - trackLeft);
+      const nextDistance = Math.abs(note.getBoundingClientRect().left - trackLeft);
+      return nextDistance < currentDistance ? index : closestIndex;
+    }, 0);
+  }
+
+  function updateControls() {
+    const currentIndex = getCurrentIndex();
+    indicatorButtons.forEach((button, index) => {
+      button.classList.toggle("is-active", index === currentIndex);
+      button.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+    });
+    previous.disabled = currentIndex === 0;
+    next.disabled = currentIndex === notes.length - 1;
+  }
+
+  previous.addEventListener("click", () => {
+    notes[Math.max(0, getCurrentIndex() - 1)].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start"
+    });
+  });
+  next.addEventListener("click", () => {
+    notes[Math.min(notes.length - 1, getCurrentIndex() + 1)].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start"
+    });
+  });
+  track.addEventListener("scroll", updateControls, { passive: true });
+  window.addEventListener("resize", updateControls);
+  updateControls();
 }
 
 function setupForm() {
@@ -314,11 +234,6 @@ function setupForm() {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const honeypot = form.querySelector("#website");
-    if (honeypot && honeypot.value.trim() !== "") {
-      return;
-    }
 
     const requiredFields = [...form.querySelectorAll("input[required], textarea[required]")];
     const hasEmptyField = requiredFields.some((field) => !field.value.trim());
@@ -385,10 +300,13 @@ function setupForm() {
 document.addEventListener("DOMContentLoaded", () => {
   setupReveal();
   setupNavigation();
-  setupMethodologySequence();
-  setupCustodyLogs();
-  setupCustodyForm();
-  setupReportViewer();
-  setupReportAnchors();
+  setupAreasCarousel();
+  setupPrinciples();
+  setupNotesCarousel();
   setupForm();
+
+  const currentYear = document.getElementById("current-year");
+  if (currentYear) {
+    currentYear.textContent = String(new Date().getFullYear());
+  }
 });
