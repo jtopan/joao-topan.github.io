@@ -135,93 +135,52 @@ function setupAreasCarousel() {
   updateIndicators();
 }
 
-function setupPrinciples() {
-  const toggles = [...document.querySelectorAll(".principle-toggle")];
+function setupAreasOrbit() {
+  const orbit = document.querySelector(".areas-orbit");
+  const detail = orbit?.querySelector(".orbit-detail");
+  const nodesWrapper = orbit?.querySelector(".orbit-nodes");
+  const nodes = [...(orbit?.querySelectorAll(".orbit-node") || [])];
+  const cards = [...document.querySelectorAll(".area-card")];
 
-  toggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-
-      toggles.forEach((item) => {
-        item.setAttribute("aria-expanded", "false");
-        const panel = document.getElementById(item.getAttribute("aria-controls"));
-        if (panel) {
-          panel.hidden = true;
-        }
-      });
-
-      if (!isOpen) {
-        toggle.setAttribute("aria-expanded", "true");
-        const panel = document.getElementById(toggle.getAttribute("aria-controls"));
-        if (panel) {
-          panel.hidden = false;
-        }
-      }
-    });
-  });
-}
-
-function setupNotesCarousel() {
-  const track = document.getElementById("methodology-notes-track");
-  const notes = [...document.querySelectorAll(".methodology-note")];
-  const controls = document.querySelector(".notes-controls");
-  const indicators = controls?.querySelector(".carousel-indicators");
-  const previous = controls?.querySelector('[data-notes="previous"]');
-  const next = controls?.querySelector('[data-notes="next"]');
-
-  if (!track || notes.length === 0 || !indicators || !previous || !next) {
+  if (!orbit || !detail || !nodesWrapper || nodes.length === 0 || nodes.length !== cards.length) {
     return;
   }
 
-  notes.forEach((note, index) => {
-    const indicator = document.createElement("button");
-    indicator.type = "button";
-    indicator.className = "carousel-indicator";
-    indicator.setAttribute("aria-label", `Ir para a informação ${index + 1}`);
-    indicator.addEventListener("click", () => {
-      note.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  let selectedIndex = Number(orbit.querySelector(".orbit-node.is-active")?.dataset.areaIndex || 0);
+  let currentRotation = 0;
+
+  function selectArea(index) {
+    if (!cards[index]) {
+      return;
+    }
+
+    selectedIndex = index;
+    nodes.forEach((node) => {
+      const selected = Number(node.dataset.areaIndex) === index;
+      node.classList.toggle("is-active", selected);
+      node.setAttribute("aria-pressed", String(selected));
     });
-    indicators.appendChild(indicator);
-  });
 
-  const indicatorButtons = [...indicators.querySelectorAll("button")];
+    const targetRotation = 90 - index * 90;
+    let rotationDelta = (targetRotation - currentRotation) % 360;
+    if (rotationDelta > 180) {
+      rotationDelta -= 360;
+    } else if (rotationDelta < -180) {
+      rotationDelta += 360;
+    }
+    currentRotation += rotationDelta;
+    nodesWrapper.style.setProperty("--orbit-rotation", `${currentRotation}deg`);
+    nodesWrapper.style.setProperty("--orbit-counter-rotation", `${-currentRotation}deg`);
 
-  function getCurrentIndex() {
-    const trackLeft = track.getBoundingClientRect().left;
-    return notes.reduce((closestIndex, note, index) => {
-      const currentDistance = Math.abs(notes[closestIndex].getBoundingClientRect().left - trackLeft);
-      const nextDistance = Math.abs(note.getBoundingClientRect().left - trackLeft);
-      return nextDistance < currentDistance ? index : closestIndex;
-    }, 0);
+    const card = cards[index];
+    detail.replaceChildren(card.querySelector("h3").cloneNode(true), card.querySelector("ul").cloneNode(true));
   }
 
-  function updateControls() {
-    const currentIndex = getCurrentIndex();
-    indicatorButtons.forEach((button, index) => {
-      button.classList.toggle("is-active", index === currentIndex);
-      button.setAttribute("aria-current", index === currentIndex ? "true" : "false");
-    });
-    previous.disabled = currentIndex === 0;
-    next.disabled = currentIndex === notes.length - 1;
-  }
+  nodes.forEach((node) => {
+    node.addEventListener("click", () => selectArea(Number(node.dataset.areaIndex)));
+  });
 
-  previous.addEventListener("click", () => {
-    notes[Math.max(0, getCurrentIndex() - 1)].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start"
-    });
-  });
-  next.addEventListener("click", () => {
-    notes[Math.min(notes.length - 1, getCurrentIndex() + 1)].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start"
-    });
-  });
-  track.addEventListener("scroll", updateControls, { passive: true });
-  window.addEventListener("resize", updateControls);
-  updateControls();
+  selectArea(selectedIndex);
 }
 
 function setupForm() {
@@ -301,8 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupReveal();
   setupNavigation();
   setupAreasCarousel();
-  setupPrinciples();
-  setupNotesCarousel();
+  setupAreasOrbit();
   setupForm();
 
   const currentYear = document.getElementById("current-year");

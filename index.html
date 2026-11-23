@@ -82,6 +82,27 @@
         </div>
 
         <div class="areas-carousel revelar" aria-label="Áreas de atuação">
+          <div class="areas-orbit" aria-label="Selecione uma esfera de atuação">
+            <div class="orbit-diagram">
+              <span class="orbit-circle" aria-hidden="true"></span>
+              <div class="orbit-nodes">
+                <button class="orbit-node orbit-north" type="button" data-area-index="0" aria-label="Cível" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/civel.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-east is-active" type="button" data-area-index="1" aria-label="Família e Sucessões" aria-pressed="true">
+                  <span class="orbit-icon"><img src="assets/img/familia.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-south" type="button" data-area-index="2" aria-label="Empresarial" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/empresarial.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-west" type="button" data-area-index="3" aria-label="Trabalhista" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/trabalhista.svg" alt="" /></span>
+                </button>
+              </div>
+            </div>
+            <article class="orbit-detail" aria-live="polite"></article>
+          </div>
+
           <div class="cards-grid" id="areas-track">
             <article class="area-card">
               <h3>Cível</h3>
@@ -142,136 +163,78 @@
             A perícia segue, principalmente, as diretrizes da ABNT NBR ISO/IEC 27037:2013, que trata da identificação, coleta, aquisição e preservação de evidência digital, e os artigos 156 a 158 e 464 a 480 do Código de Processo Civil. Cada etapa é documentada, de modo que outro perito consiga repetir o trabalho e chegar ao mesmo resultado.
           </p>
 
-          <div class="process-grid" aria-label="Etapas da metodologia pericial">
-            <article class="process-card revelar">
-              <div class="process-icon" aria-hidden="true">
-                <img src="assets/img/identificacao.svg" alt="" />
-              </div>
-              <h3>Identificação</h3>
-              <p>Reconhecimento e documentação da potencial evidência, antes de qualquer exame.</p>
-            </article>
-            <article class="process-card revelar">
-              <div class="process-icon" aria-hidden="true">
-                <img src="assets/img/coleta.svg" alt="" />
-              </div>
-              <h3>Coleta</h3>
-              <p>Remoção do dispositivo para um ambiente controlado, quando aplicável.</p>
-            </article>
-            <article class="process-card revelar">
-              <div class="process-icon" aria-hidden="true">
-                <img src="assets/img/aquisicao.svg" alt="" />
-              </div>
-              <h3>Aquisição</h3>
-              <p>Cópia forense e verificação de integridade.</p>
-            </article>
-            <article class="process-card revelar">
-              <div class="process-icon" aria-hidden="true">
-                <img src="assets/img/preservacao.svg" alt="" />
-              </div>
-              <h3>Preservação</h3>
-              <p>Guarda contra adulteração ou perda.</p>
-            </article>
-          </div>
-
-          <div class="principles revelar">
-            <h3>Princípios</h3>
-            <div class="principle-grid">
-              <article class="principle-item">
-                <button type="button" class="principle-toggle" aria-expanded="false" aria-controls="principle-auditabilidade">
-                  <span>Auditabilidade</span>
-                  <span class="principle-chevron" aria-hidden="true">+</span>
-                </button>
-                <div class="principle-panel" id="principle-auditabilidade" hidden>
-                  <img src="assets/img/auditabilidade.svg" alt="" />
-                  <p>Recomenda-se que seja possível para um assistente independente ou outra parte autorizada interessada avaliar as atividades realizadas por um DEFR.</p>
-                </div>
-              </article>
-              <article class="principle-item">
-                <button type="button" class="principle-toggle" aria-expanded="false" aria-controls="principle-repetibilidade">
-                  <span>Repetibilidade</span>
-                  <span class="principle-chevron" aria-hidden="true">+</span>
-                </button>
-                <div class="principle-panel" id="principle-repetibilidade" hidden>
-                  <img src="assets/img/repetibilidade.svg" alt="" />
-                  <p>Convém que um DEFR seja capaz de realizar todos os processos descritos na documentação e, a partir dos mesmos procedimentos e instrumentos, alcançar os mesmos resultados.</p>
-                </div>
-              </article>
-              <article class="principle-item">
-                <button type="button" class="principle-toggle" aria-expanded="false" aria-controls="principle-reprodutibilidade">
-                  <span>Reprodutibilidade</span>
-                  <span class="principle-chevron" aria-hidden="true">+</span>
-                </button>
-                <div class="principle-panel" id="principle-reprodutibilidade" hidden>
-                  <img src="assets/img/reprodutibilidade.svg" alt="" />
-                  <p>A reprodutibilidade é estabelecida quando os mesmos resultados de testes são produzidos sob a utilização de mesmos métodos, porém com diferentes instrumentos (ex: ferramentas de aquisição, hashing).</p>
-                </div>
-              </article>
-              <article class="principle-item">
-                <button type="button" class="principle-toggle" aria-expanded="false" aria-controls="principle-justificabilidade">
-                  <span>Justificabilidade</span>
-                  <span class="principle-chevron" aria-hidden="true">+</span>
-                </button>
-                <div class="principle-panel" id="principle-justificabilidade" hidden>
-                  <img src="assets/img/justificabilidade.svg" alt="" />
-                  <p>A justificativa pode ser alcançada demonstrando que a decisão foi a melhor escolha para obter toda a potencial evidência digital.</p>
-                </div>
-              </article>
+          <div class="methodology-columns">
+            <div class="methodology-list revelar">
+              <h3>Etapas de manuseio da evidência digital</h3>
+              <ol class="methodology-steps">
+                <li><strong>Identificação</strong><p>Reconhecimento e documentação da potencial evidência, antes de qualquer exame.</p></li>
+                <li><strong>Coleta</strong><p>Remoção do dispositivo para um ambiente controlado, quando aplicável.</p></li>
+                <li><strong>Aquisição</strong><p>Cópia forense e verificação de integridade.</p></li>
+                <li><strong>Preservação</strong><p>Guarda contra adulteração ou perda.</p></li>
+              </ol>
+            </div>
+            <div class="methodology-list revelar">
+              <h3>Princípios do processo pericial</h3>
+              <ol class="methodology-steps">
+                <li><strong>Auditabilidade</strong><p>Permite que um assistente independente ou outra parte autorizada avalie as atividades realizadas.</p></li>
+                <li><strong>Repetibilidade</strong><p>Os mesmos procedimentos e instrumentos devem permitir alcançar os mesmos resultados.</p></li>
+                <li><strong>Reprodutibilidade</strong><p>Os mesmos resultados devem ser obtidos com os mesmos métodos, ainda que com diferentes instrumentos.</p></li>
+                <li><strong>Justificabilidade</strong><p>As decisões são justificadas como as melhores escolhas para obter toda a potencial evidência digital.</p></li>
+              </ol>
             </div>
           </div>
 
-          <div class="methodology-notes-wrap revelar">
-            <div class="methodology-notes" id="methodology-notes-track">
-              <article class="methodology-note">
-                <h3>Cadeia de custódia</h3>
-                <p>Registro cronológico de quem teve contato com a evidência, quando e por quê. Cada ação é documentada, do recebimento até a guarda. No processo civil não é exigência legal, mas é adotada em toda perícia.</p>
-              </article>
-              <article class="methodology-note">
-                <h3>Limitações</h3>
-                <p>A conclusão depende do material recebido. Quando há apenas cópia, captura de tela ou exportação, o laudo informa o que não é possível afirmar e por quê.</p>
-              </article>
-              <article class="methodology-note">
-                <h3>Imparcialidade e impedimentos</h3>
-                <p>Havendo impedimento ou suspeição, a nomeação não é aceita, e o juízo é comunicado caso a situação surja depois (CPC, arts. 148 e 467).</p>
-              </article>
-            </div>
-            <div class="carousel-controls notes-controls" aria-label="Navegação dos princípios periciais">
-              <button type="button" class="carousel-button" data-notes="previous" aria-label="Informação anterior">Anterior</button>
-              <div class="carousel-indicators" aria-label="Posição das informações"></div>
-              <button type="button" class="carousel-button" data-notes="next" aria-label="Próxima informação">Próximo</button>
-            </div>
+          <div class="methodology-notes">
+            <article class="methodology-note">
+              <h3>Cadeia de custódia</h3>
+              <p>Registro cronológico de quem teve contato com a evidência, quando e por quê. Cada ação é documentada, do recebimento até a guarda. No processo civil não é exigência legal, mas é adotada em toda perícia.</p>
+            </article>
+            <article class="methodology-note">
+              <h3>Limitações</h3>
+              <p>A conclusão depende do material recebido. Quando há apenas cópia, captura de tela ou exportação, o laudo informa o que não é possível afirmar e por quê.</p>
+            </article>
+            <article class="methodology-note">
+              <h3>Imparcialidade e impedimentos</h3>
+              <p>Havendo impedimento ou suspeição, a nomeação não é aceita, e o juízo é comunicado caso a situação surja depois (CPC, arts. 148 e 467).</p>
+            </article>
           </div>
         </div>
       </section>
 
       <section class="section formation-section" id="formacao">
         <div class="container">
-          <div class="section-heading revelar">
+          <div class="section-heading centered revelar">
             <h2>Formação</h2>
           </div>
 
-          <p class="formation-intro revelar">
+          <p class="formation-intro centered revelar">
             Antes da perícia, trabalhei por 4 anos como desenvolvedor de software destinado ao contencioso de ações cíveis e trabalhistas. Contei, até aqui, com professores excelentes e agradeço-lhes imensamente pelo aprendizado que, hoje, posso compartilhar aqui.
           </p>
 
           <div class="education-timeline" aria-label="Linha do tempo da formação">
-            <article class="education-entry revelar">
-              <span class="education-years"><time datetime="2021">2021</time> – <time datetime="2024">2024</time></span>
-              <img src="assets/img/usp.svg" alt="Logo da Universidade de São Paulo" />
-              <h3>Universidade de São Paulo (USP)</h3>
-              <p>Bacharelado em Sistemas de Informação</p>
-            </article>
-            <article class="education-entry revelar">
-              <span class="education-years"><time datetime="2025">2025</time> – <time datetime="2026">2026</time></span>
-              <img src="assets/img/fiap.svg" alt="Logo da Faculdade de Informática e Administração Paulista" />
-              <h3>Faculdade de Informática e Administração Paulista (FIAP)</h3>
-              <p>MBA em Cibersegurança</p>
-            </article>
-            <article class="education-entry revelar">
-              <span class="education-years"><time datetime="2026">2026</time> – <time datetime="2027">2027</time></span>
-              <img src="assets/img/afd.png" alt="Logo da Academia Forense Digital" />
-              <h3>Academia Forense Digital (AFD)</h3>
-              <p>Mais de 80 horas de treinamento forense na Academia Forense Digital (AFD), em andamento</p>
-            </article>
+            <div class="timeline-axis" aria-hidden="true">
+              <span class="timeline-year year-2021">2021</span>
+              <span class="timeline-year year-2025">2025</span>
+              <span class="timeline-year year-2026">2026</span>
+              <span class="timeline-year year-2027">2027</span>
+            </div>
+            <div class="timeline-entries">
+              <article class="education-entry revelar">
+                <img src="assets/img/usp.svg" alt="Logo da Universidade de São Paulo" />
+                <h3>Universidade de São Paulo (USP)</h3>
+                <p>Bacharelado em Sistemas de Informação</p>
+              </article>
+              <article class="education-entry revelar">
+                <img src="assets/img/fiap.svg" alt="Logo da Faculdade de Informática e Administração Paulista" />
+                <h3>Faculdade de Informática e Administração Paulista (FIAP)</h3>
+                <p>MBA em Cibersegurança</p>
+              </article>
+              <article class="education-entry revelar">
+                <img src="assets/img/afd.png" alt="Logo da Academia Forense Digital" />
+                <h3>Academia Forense Digital (AFD)</h3>
+                <p>Mais de 80 horas de treinamento forense na Academia Forense Digital (AFD), em andamento</p>
+              </article>
+            </div>
           </div>
 
           <div class="training-content revelar">
@@ -292,20 +255,22 @@
 
       <section class="section report-section" id="laudos">
         <div class="container">
-          <div class="section-heading centered revelar">
-            <h2>Laudos de exemplo</h2>
-          </div>
-          <p class="report-intro revelar">
-            Os laudos abaixo são fictícios, elaborados a partir de informações simuladas, e não se referem a nenhum processo real. Servem para mostrar como estruturo a análise e respondo aos quesitos. O laudo empresarial foi baseado em um laboratório da plataforma <a href="https://cyberdefenders.org" target="_blank" rel="noopener noreferrer">CyberDefenders</a>.
-          </p>
-          <p class="report-line revelar">
-            Todos seguem a mesma estrutura: identificação, objeto da perícia, material examinado, metodologia, análise técnica, resposta aos quesitos, limitações e anexos.
-          </p>
-          <div class="report-actions revelar" aria-label="Laudos de exemplo por esfera">
-            <a class="button button-primary" href="assets/pdf/laudo_civel.pdf" target="_blank" rel="noopener noreferrer">Cível</a>
-            <a class="button button-primary" href="assets/pdf/laudo_familia.pdf" target="_blank" rel="noopener noreferrer">Família e Sucessões</a>
-            <a class="button button-primary" href="assets/img/laudo_exemplo.pdf" target="_blank" rel="noopener noreferrer">Empresarial</a>
-            <a class="button button-primary" href="assets/pdf/laudo_trabalhista.pdf" target="_blank" rel="noopener noreferrer">Trabalhista</a>
+          <div class="report-panel revelar">
+            <div class="section-heading centered">
+              <h2>Laudos de exemplo</h2>
+            </div>
+            <p class="report-intro">
+              Os laudos abaixo são fictícios, elaborados a partir de informações simuladas, e não se referem a nenhum processo real. Servem para mostrar como estruturo a análise e respondo aos quesitos. O laudo empresarial foi baseado em um laboratório da plataforma <a href="https://cyberdefenders.org" target="_blank" rel="noopener noreferrer">CyberDefenders</a>.
+            </p>
+            <p class="report-line">
+              Todos seguem a mesma estrutura: identificação, objeto da perícia, material examinado, metodologia, análise técnica, resposta aos quesitos, limitações e anexos.
+            </p>
+            <div class="report-actions" aria-label="Laudos de exemplo por esfera">
+              <a class="button button-primary" href="assets/pdf/laudo_civel.pdf" target="_blank" rel="noopener noreferrer">Cível</a>
+              <a class="button button-primary" href="assets/pdf/laudo_familia.pdf" target="_blank" rel="noopener noreferrer">Família e Sucessões</a>
+              <a class="button button-primary" href="assets/img/laudo_exemplo.pdf" target="_blank" rel="noopener noreferrer">Empresarial</a>
+              <a class="button button-primary" href="assets/pdf/laudo_trabalhista.pdf" target="_blank" rel="noopener noreferrer">Trabalhista</a>
+            </div>
           </div>
         </div>
       </section>
