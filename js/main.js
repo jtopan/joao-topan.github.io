@@ -6,27 +6,35 @@ function isInRevealViewport(element) {
     Number.parseFloat(
       window.getComputedStyle(document.documentElement).getPropertyValue("--navbar-height")
     ) || 0;
-  const revealOffset = 24;
 
-  return (
-    rect.bottom > navbarHeight + revealOffset &&
-    rect.top < window.innerHeight * 0.86 - revealOffset
-  );
+  return rect.bottom > navbarHeight + 24 && rect.top < window.innerHeight * 0.86 - 24;
 }
 
 function setupReveal() {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const elements = [...document.querySelectorAll(".revelar")];
 
-  if (reduceMotion) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     elements.forEach((element) => element.classList.add("visivel"));
     return;
   }
 
+  let previousScrollY = window.scrollY;
+
   function updateReveals() {
+    const scrollingDown = window.scrollY >= previousScrollY;
+
     elements.forEach((element) => {
-      element.classList.toggle("visivel", isInRevealViewport(element));
+      if (scrollingDown && isInRevealViewport(element)) {
+        element.classList.add("visivel");
+      } else if (!scrollingDown) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top >= window.innerHeight * 0.86) {
+          element.classList.remove("visivel");
+        }
+      }
     });
+
+    previousScrollY = window.scrollY;
   }
 
   window.addEventListener("scroll", updateReveals, { passive: true });
@@ -55,253 +63,124 @@ function setupNavigation() {
   });
 }
 
-function setupMethodologySequence() {
-  const scrollContainer = document.querySelector(".methodology-scroll");
-  const sticky = document.querySelector(".methodology-sticky");
-  const stages = [...document.querySelectorAll("[data-methodology-stage]")];
-  const handlingGrid = document.querySelector(
-    '[data-methodology-stage="handling"] .process-grid'
-  );
-  const pinDuration = 320;
-  const stageSwitchOffset = 190;
+function setupAreasCarousel() {
+  const carousel = document.querySelector(".areas-carousel");
+  const track = document.getElementById("areas-track");
+  const cards = [...document.querySelectorAll(".area-card")];
+  const indicators = carousel?.querySelector(".carousel-indicators");
+  const previous = carousel?.querySelector('[data-carousel="previous"]');
+  const next = carousel?.querySelector('[data-carousel="next"]');
 
-  if (!scrollContainer || !sticky || !handlingGrid || stages.length !== 2) {
+  if (!carousel || !track || cards.length === 0 || !indicators || !previous || !next) {
     return;
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    stages.forEach((stage) => {
-      stage.classList.add("is-active");
+  cards.forEach((card, index) => {
+    const indicator = document.createElement("button");
+    indicator.type = "button";
+    indicator.className = "carousel-indicator";
+    indicator.setAttribute("aria-label", `Ir para a área ${index + 1}`);
+    indicator.addEventListener("click", () => {
+      cards[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      cards[index].focus({ preventScroll: true });
     });
-    return;
-  }
-
-  let activeStage;
-  let maxStageHeight = 0;
-  let handlingGridPageTop = 0;
-
-  function measureStages() {
-    maxStageHeight = sticky.offsetHeight;
-    const regionTop = scrollContainer.getBoundingClientRect().top + window.scrollY;
-    handlingGridPageTop =
-      regionTop +
-      handlingGrid.getBoundingClientRect().top -
-      sticky.getBoundingClientRect().top;
-  }
-
-  function updateStage(remeasure = false) {
-    if (remeasure) {
-      maxStageHeight = 0;
-      measureStages();
-    }
-
-    const stickyTop =
-      Number.parseFloat(
-        window.getComputedStyle(document.documentElement).getPropertyValue("--navbar-height")
-      ) || 0;
-    const regionTop = scrollContainer.getBoundingClientRect().top + window.scrollY;
-    const pinStart = regionTop - stickyTop;
-    const scrollY = window.scrollY;
-    const canPin = window.innerHeight - stickyTop >= maxStageHeight;
-    const switchAt = canPin
-      ? pinStart + stageSwitchOffset
-      : handlingGridPageTop - window.innerHeight * 0.55 + stageSwitchOffset;
-    const showPrinciples = scrollY >= switchAt;
-    const nextStage = showPrinciples ? "principles" : "handling";
-    const stageChanged = nextStage !== activeStage;
-
-    if (stageChanged) {
-      stages.forEach((stage) => {
-        stage.classList.toggle("is-active", stage.dataset.methodologyStage === nextStage);
-      });
-      activeStage = nextStage;
-    }
-
-    const activePinDuration = canPin ? pinDuration : 0;
-    const pinEnd = pinStart + activePinDuration;
-
-    if (stageChanged || remeasure) {
-      scrollContainer.style.minHeight = `${sticky.offsetHeight + activePinDuration}px`;
-    }
-
-    const shouldPin = canPin && scrollY >= pinStart && scrollY <= pinEnd;
-    scrollContainer.classList.toggle("is-pinned", shouldPin);
-    scrollContainer.classList.toggle("is-released", canPin && scrollY > pinEnd);
-  }
-
-  window.addEventListener("scroll", updateStage, { passive: true });
-  window.addEventListener("resize", () => updateStage(true));
-  window.addEventListener("load", () => updateStage(true), { once: true });
-  updateStage(true);
-}
-
-function setupCustodyLogs() {
-  const notepad = document.querySelector(".notepad");
-  const entries = notepad?.querySelectorAll(".notepad-logs li");
-
-  if (!notepad || !entries || entries.length === 0) {
-    return;
-  }
-
-  let animationId = 0;
-  let isTyping = false;
-
-  const clearLogs = () => {
-    entries.forEach((entry) => {
-      entry.textContent = "";
-    });
-  };
-
-  const fillLogs = async (currentAnimationId) => {
-    for (const entry of entries) {
-      if (currentAnimationId !== animationId) {
-        return;
-      }
-
-      const text = entry.dataset.text || "";
-      entry.textContent = "";
-
-      for (const character of text) {
-        if (currentAnimationId !== animationId) {
-          return;
-        }
-        entry.textContent += character;
-        await new Promise((resolve) => window.setTimeout(resolve, 6));
-      }
-
-      await new Promise((resolve) => window.setTimeout(resolve, 140));
-    }
-  };
-
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    entries.forEach((entry) => {
-      entry.textContent = entry.dataset.text || "";
-    });
-    return;
-  }
-
-  entries.forEach((entry) => {
-    entry.textContent = "";
+    indicators.appendChild(indicator);
   });
 
-  function updateLogs() {
-    if (isInRevealViewport(notepad)) {
-      if (!isTyping) {
-        isTyping = true;
-        animationId += 1;
-        fillLogs(animationId);
+  const indicatorButtons = [...indicators.querySelectorAll("button")];
+
+  function updateIndicators() {
+    const trackLeft = track.getBoundingClientRect().left;
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
       }
-    } else {
-      animationId += 1;
-      isTyping = false;
-      clearLogs();
-    }
+    });
+
+    indicatorButtons.forEach((button, index) => {
+      button.classList.toggle("is-active", index === closestIndex);
+      button.setAttribute("aria-current", index === closestIndex ? "true" : "false");
+    });
+
+    previous.disabled = closestIndex === 0;
+    next.disabled = closestIndex === cards.length - 1;
   }
 
-  window.addEventListener("scroll", updateLogs, { passive: true });
-  window.addEventListener("resize", updateLogs);
-  updateLogs();
+  function moveBy(direction) {
+    const trackLeft = track.getBoundingClientRect().left;
+    let targetIndex = 0;
+    let closestDistance = Infinity;
+
+    cards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        targetIndex = index;
+      }
+    });
+
+    const target = cards[Math.min(cards.length - 1, Math.max(0, targetIndex + direction))];
+    target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  }
+
+  previous.addEventListener("click", () => moveBy(-1));
+  next.addEventListener("click", () => moveBy(1));
+  track.addEventListener("scroll", updateIndicators, { passive: true });
+  window.addEventListener("resize", updateIndicators);
+  updateIndicators();
 }
 
-function setupCustodyForm() {
-  const form = document.querySelector(".custody-form");
-  const values = [...(form?.querySelectorAll(".custody-value[data-text]") || [])];
+function setupAreasOrbit() {
+  const orbit = document.querySelector(".areas-orbit");
+  const detail = orbit?.querySelector(".orbit-detail");
+  const nodesWrapper = orbit?.querySelector(".orbit-nodes");
+  const nodes = [...(orbit?.querySelectorAll(".orbit-node") || [])];
+  const cards = [...document.querySelectorAll(".area-card")];
 
-  if (!form || values.length === 0) {
+  if (!orbit || !detail || !nodesWrapper || nodes.length === 0 || nodes.length !== cards.length) {
     return;
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return;
-  }
+  let selectedIndex = Number(orbit.querySelector(".orbit-node.is-active")?.dataset.areaIndex || 0);
+  let currentRotation = 0;
 
-  let animationId = 0;
-  let isTyping = false;
-
-  const clearValues = () => {
-    values.forEach((value) => {
-      value.textContent = "";
-    });
-  };
-
-  const fillValues = async (currentAnimationId) => {
-    for (const value of values) {
-      if (currentAnimationId !== animationId) {
-        return;
-      }
-
-      const text = value.dataset.text || "";
-      value.textContent = "";
-
-      for (const character of text) {
-        if (currentAnimationId !== animationId) {
-          return;
-        }
-        value.textContent += character;
-        await new Promise((resolve) => window.setTimeout(resolve, 7));
-      }
-
-      await new Promise((resolve) => window.setTimeout(resolve, 80));
+  function selectArea(index) {
+    if (!cards[index]) {
+      return;
     }
-  };
 
-  clearValues();
-
-  function updateValues() {
-    if (isInRevealViewport(form)) {
-      if (!isTyping) {
-        isTyping = true;
-        animationId += 1;
-        fillValues(animationId);
-      }
-    } else {
-      animationId += 1;
-      isTyping = false;
-      clearValues();
-    }
-  }
-
-  window.addEventListener("scroll", updateValues, { passive: true });
-  window.addEventListener("resize", updateValues);
-  updateValues();
-}
-
-function setupReportAnchors() {
-  const viewer = document.querySelector(".report-pdf");
-  const links = document.querySelectorAll(".report-section-link");
-
-  if (!viewer || links.length === 0) {
-    return;
-  }
-
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const pdfUrl = new URL(link.href);
-      pdfUrl.searchParams.set("jump", String(Date.now()));
-      viewer.src = pdfUrl.toString();
-      viewer.scrollIntoView({ behavior: "smooth", block: "center" });
+    selectedIndex = index;
+    nodes.forEach((node) => {
+      const selected = Number(node.dataset.areaIndex) === index;
+      node.classList.toggle("is-active", selected);
+      node.setAttribute("aria-pressed", String(selected));
     });
+
+    const targetRotation = 90 - index * 90;
+    let rotationDelta = (targetRotation - currentRotation) % 360;
+    if (rotationDelta > 180) {
+      rotationDelta -= 360;
+    } else if (rotationDelta < -180) {
+      rotationDelta += 360;
+    }
+    currentRotation += rotationDelta;
+    nodesWrapper.style.setProperty("--orbit-rotation", `${currentRotation}deg`);
+    nodesWrapper.style.setProperty("--orbit-counter-rotation", `${-currentRotation}deg`);
+
+    const card = cards[index];
+    detail.replaceChildren(card.querySelector("h3").cloneNode(true), card.querySelector("ul").cloneNode(true));
+  }
+
+  nodes.forEach((node) => {
+    node.addEventListener("click", () => selectArea(Number(node.dataset.areaIndex)));
   });
-}
 
-function setupReportViewer() {
-  const viewer = document.querySelector(".report-pdf");
-  const source = viewer?.dataset.src;
-
-  if (!viewer || !source || !("IntersectionObserver" in window)) {
-    return;
-  }
-
-  const visibilityThreshold = 0.5;
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((entry) => entry.intersectionRatio >= visibilityThreshold)) {
-      viewer.src = source;
-      observer.disconnect();
-    }
-  }, { threshold: visibilityThreshold });
-
-  observer.observe(viewer);
+  selectArea(selectedIndex);
 }
 
 function setupForm() {
@@ -314,11 +193,6 @@ function setupForm() {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const honeypot = form.querySelector("#website");
-    if (honeypot && honeypot.value.trim() !== "") {
-      return;
-    }
 
     const requiredFields = [...form.querySelectorAll("input[required], textarea[required]")];
     const hasEmptyField = requiredFields.some((field) => !field.value.trim());
@@ -385,10 +259,12 @@ function setupForm() {
 document.addEventListener("DOMContentLoaded", () => {
   setupReveal();
   setupNavigation();
-  setupMethodologySequence();
-  setupCustodyLogs();
-  setupCustodyForm();
-  setupReportViewer();
-  setupReportAnchors();
+  setupAreasCarousel();
+  setupAreasOrbit();
   setupForm();
+
+  const currentYear = document.getElementById("current-year");
+  if (currentYear) {
+    currentYear.textContent = String(new Date().getFullYear());
+  }
 });

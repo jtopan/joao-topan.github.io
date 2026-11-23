@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio de perícia digital e computação forense com metodologia, cadeia de custódia e laudos."
+      content="Perito em informática forense, cadastrado como auxiliar da Justiça no TJSP e no TRT-2. Áreas de atuação, metodologia, formação e laudos de exemplo."
     />
-    <title>João | Perícia Digital</title>
+    <title>João Topan | Informática forense</title>
     <link rel="icon" href="assets/img/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,8 +40,8 @@
         <div class="nav-menu" id="nav-menu">
           <a href="#areas">Áreas de atuação</a>
           <a href="#metodologia">Metodologia</a>
-          <a href="#custodia">Cadeia de custódia</a>
-          <a href="#laudo">Laudo</a>
+          <a href="#formacao">Formação</a>
+          <a href="#laudos">Laudos</a>
           <a href="#contato">Contato</a>
         </div>
       </nav>
@@ -51,19 +51,15 @@
       <section class="hero container revelar" id="inicio">
         <div class="hero-copy">
           <p class="eyebrow">Perito em</p>
-          <h1>Forense computacional</h1>
+          <h1><span>Informática</span><span>forense</span></h1>
           <div class="lead-copy">
             <p>
-              Muito prazer, sou o <strong>João Vitor</strong>, e quero dedicar este espaço a qualquer
-              pessoa interessada em conhecer um pouco melhor a <strong>perícia digital</strong> e o
-              meu trabalho.
+              Muito prazer, sou o <strong>João Vitor</strong>, perito em informática forense. Meu perfil está disponível para nomeação no Portal de Auxiliares da Justiça do TJSP, no EPROC e no TRT-2, para perícias cíveis, de família, empresariais e trabalhistas envolvendo e-mails, mensagens, documentos digitais e dispositivos, principalmente.
             </p>
-            <p>
-              Conheça as principais normas técnicas que regem nosso trabalho e as principais
-              ferramentas que o tornam íntegro. Contei, até aqui, com professores excelentes e
-              agradeço-lhes imensamente pelo aprendizado que, hoje, posso compartilhar aqui. Aproveite
-              a leitura.
-            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#areas">Áreas de atuação</a>
+            <a class="button button-secondary" href="#contato">Solicitar currículo</a>
           </div>
         </div>
 
@@ -82,393 +78,199 @@
       <section class="section container" id="areas">
         <div class="section-heading centered revelar">
           <h2>Áreas de atuação</h2>
+          <p>Perícias que costumam surgir em cada esfera.</p>
         </div>
 
-        <div class="cards-grid">
-          <article class="mini-card revelar">
-            <img src="assets/img/disco.svg" alt="" />
-            <h3>Discos e sistemas de arquivo</h3>
-          </article>
+        <div class="areas-carousel revelar" aria-label="Áreas de atuação">
+          <div class="areas-orbit" aria-label="Selecione uma esfera de atuação">
+            <div class="orbit-diagram">
+              <span class="orbit-circle" aria-hidden="true"></span>
+              <div class="orbit-nodes">
+                <button class="orbit-node orbit-north" type="button" data-area-index="0" aria-label="Cível" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/civel.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-east is-active" type="button" data-area-index="1" aria-label="Família e Sucessões" aria-pressed="true">
+                  <span class="orbit-icon"><img src="assets/img/familia.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-south" type="button" data-area-index="2" aria-label="Empresarial" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/empresarial.svg" alt="" /></span>
+                </button>
+                <button class="orbit-node orbit-west" type="button" data-area-index="3" aria-label="Trabalhista" aria-pressed="false">
+                  <span class="orbit-icon"><img src="assets/img/trabalhista.svg" alt="" /></span>
+                </button>
+              </div>
+            </div>
+            <article class="orbit-detail" aria-live="polite"></article>
+          </div>
 
-          <article class="mini-card revelar">
-            <img src="assets/img/memoria.svg" alt="" />
-            <h3>Memória</h3>
-          </article>
+          <div class="cards-grid" id="areas-track">
+            <article class="area-card">
+              <h3>Cível</h3>
+              <ul>
+                <li>Autenticidade de e-mails, mensagens e capturas de tela</li>
+                <li>Contratos e assinaturas eletrônicas</li>
+                <li>Metadados e histórico de edição de documentos</li>
+                <li>Fraudes eletrônicas</li>
+                <li>Propriedade intelectual de software</li>
+              </ul>
+            </article>
 
-          <article class="mini-card revelar">
-            <img src="assets/img/mobile.svg" alt="" />
-            <h3>Dispositivos móveis</h3>
-          </article>
+            <article class="area-card">
+              <h3>Família e Sucessões</h3>
+              <ul>
+                <li>Mensagens, áudios e imagens, suspeita de manipulação</li>
+                <li>Acesso indevido a dispositivos e contas</li>
+                <li>Coleta de dados de fontes públicas (OSINT)</li>
+              </ul>
+            </article>
 
-          <article class="mini-card revelar">
-            <img src="assets/img/redes.svg" alt="" />
-            <h3>Redes</h3>
-          </article>
+            <article class="area-card">
+              <h3>Empresarial</h3>
+              <ul>
+                <li>Cópia ou saída indevida de arquivos e dados</li>
+                <li>E-mails e comunicações corporativas</li>
+                <li>Concorrência desleal ou violação de patente</li>
+                <li>Incidentes de segurança e vazamento de dados</li>
+              </ul>
+            </article>
 
-          <article class="mini-card revelar">
-            <img src="assets/img/malware.svg" alt="" />
-            <h3>Malware</h3>
-          </article>
+            <article class="area-card">
+              <h3>Trabalhista</h3>
+              <ul>
+                <li>Registros de jornada em sistemas de ponto eletrônico</li>
+                <li>Mensagens e e-mails corporativos</li>
+                <li>Logs de acesso a sistemas</li>
+                <li>Dispositivos fornecidos pela empresa</li>
+              </ul>
+            </article>
+          </div>
 
-          <article class="mini-card revelar">
-            <img src="assets/img/nuvem.svg" alt="" />
-            <h3>Nuvem</h3>
-          </article>
-
-          <article class="mini-card revelar">
-            <img src="assets/img/email.svg" alt="" />
-            <h3>Mensagens</h3>
-          </article>
+          <div class="carousel-controls" aria-label="Navegação das áreas de atuação">
+            <button type="button" class="carousel-button" data-carousel="previous" aria-label="Área anterior">Anterior</button>
+            <div class="carousel-indicators" aria-label="Posição do carrossel"></div>
+            <button type="button" class="carousel-button" data-carousel="next" aria-label="Próxima área">Próximo</button>
+          </div>
         </div>
       </section>
 
       <section class="methodology section" id="metodologia">
-        <div class="methodology-scroll">
-          <div class="methodology-sticky">
-            <div class="container methodology-inner">
-              <div class="section-heading methodology-heading revelar">
-                <h2>Metodologia pericial</h2>
-              </div>
+        <div class="container">
+          <div class="section-heading revelar">
+            <h2>Metodologia pericial</h2>
+          </div>
 
-              <p class="methodology-intro revelar">
-                O trabalho pericial exige o conhecimento de procedimentos padronizados de manuseio de
-                evidências digitais, antes mesmo de pegar um dispositivo em mãos. Ao dominá-los,
-                garantimos integridade tanto à evidência digital, quanto ao processo judicial.
-              </p>
+          <p class="methodology-intro revelar">
+            A perícia segue, principalmente, as diretrizes da ABNT NBR ISO/IEC 27037:2013, que trata da identificação, coleta, aquisição e preservação de evidência digital, e os artigos 156 a 158 e 464 a 480 do Código de Processo Civil. Cada etapa é documentada, de modo que outro perito consiga repetir o trabalho e chegar ao mesmo resultado.
+          </p>
 
-              <p class="methodology-intro revelar">
-                A ISO/IEC 27037, homologada pela ABNT, é a principal norma que rege os procedimentos de
-                manuseio de evidências digitais, com diretrizes para identificação, coleta, aquisição e
-                preservação de evidências digitais em processos judiciais.
-              </p>
-
-              <div class="methodology-stages">
-                <div class="methodology-stage is-active" data-methodology-stage="handling">
-                  <h3 class="process-stage-title revelar">Processos de manuseio</h3>
-                  <p class="process-stage-description revelar">
-                    Uma evidência pode ser frágil em sua natureza e adulterada ou destruída por exame
-                    impróprio. A ISO 27037 dá diretrizes específicas para quatro etapas de manuseio:
-                  </p>
-                  <div class="process-grid" aria-label="Etapas do manuseio de evidências">
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/identificacao.svg" alt="" />
-                      </div>
-                      <h3>Identificação</h3>
-                      <p>A pesquisa, reconhecimento e documentação da potencial evidência digital, antes de qualquer outro exame.</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/coleta.svg" alt="" />
-                      </div>
-                      <h3>Coleta</h3>
-                      <p>Remoção do dispositivo com evidência digital para um ambiente controlado. Não aplicável, dependendo do contexto.</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/aquisicao.svg" alt="" />
-                      </div>
-                      <h3>Aquisição</h3>
-                      <p>Produção da cópia forense e verificação da integridade da réplica.</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/preservacao.svg" alt="" />
-                      </div>
-                      <h3>Preservação</h3>
-                      <p>Configura a guarda do dispositivo digital contra espoliação ou adulteração.</p>
-                    </article>
-                  </div>
-                  <span class="methodology-direction methodology-direction-next" aria-hidden="true">→</span>
-                </div>
-
-                <div class="methodology-stage" data-methodology-stage="principles">
-                  <h3 class="process-stage-title revelar">Princípios da evidência digital</h3>
-                  <p class="process-stage-description revelar">
-                    A ISO dá as principais diretrizes para o manuseio da evidência, destacando as
-                    responsabilidades do Primeiro Interventor da Evidência Digital (DEFR) e os princípios
-                    a serem seguidos durante <strong>todos os procedimentos anteriores</strong>:
-                  </p>
-                  <div class="process-grid" aria-label="Princípios da evidência digital">
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/auditabilidade.svg" alt="" />
-                      </div>
-                      <h3>Auditabilidade</h3>
-                      <p>Recomenda-se que seja possível para um assistente independente ou outra parte autorizada interessada avaliar as atividades realizadas por um DEFR.</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/repetibilidade.svg" alt="" />
-                      </div>
-                      <h3>Repetibilidade</h3>
-                      <p>Convém que um DEFR seja capaz de realizar todos os processos descritos na documentação e, a partir dos mesmos procedimentos e instrumentos, alcançar os mesmos resultados.</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/reprodutibilidade.svg" alt="" />
-                      </div>
-                      <h3>Reprodutibilidade</h3>
-                      <p>A reprodutibilidade é estabelecida quando os mesmos resultados de testes são produzidos sob a utilização de mesmos métodos, porém com diferentes instrumentos (ex: ferramentas de aquisição, hashing).</p>
-                    </article>
-                    <article class="process-card revelar">
-                      <div class="process-icon" aria-hidden="true">
-                        <img src="assets/img/justificabilidade.svg" alt="" />
-                      </div>
-                      <h3>Justificabilidade</h3>
-                      <p>A justificativa pode ser alcançada demonstrando que a decisão foi a melhor escolha para obter toda a potencial evidência digital.</p>
-                    </article>
-                  </div>
-                  <span class="methodology-direction methodology-direction-previous" aria-hidden="true">←</span>
-                </div>
-              </div>
+          <div class="methodology-columns">
+            <div class="methodology-list revelar">
+              <h3>Etapas de manuseio da evidência digital</h3>
+              <ol class="methodology-steps">
+                <li><strong>Identificação</strong><p>Reconhecimento e documentação da potencial evidência, antes de qualquer exame.</p></li>
+                <li><strong>Coleta</strong><p>Remoção do dispositivo para um ambiente controlado, quando aplicável.</p></li>
+                <li><strong>Aquisição</strong><p>Cópia forense e verificação de integridade.</p></li>
+                <li><strong>Preservação</strong><p>Guarda contra adulteração ou perda.</p></li>
+              </ol>
             </div>
+            <div class="methodology-list revelar">
+              <h3>Princípios do processo pericial</h3>
+              <ol class="methodology-steps">
+                <li><strong>Auditabilidade</strong><p>Permite que um assistente independente ou outra parte autorizada avalie as atividades realizadas.</p></li>
+                <li><strong>Repetibilidade</strong><p>Os mesmos procedimentos e instrumentos devem permitir alcançar os mesmos resultados.</p></li>
+                <li><strong>Reprodutibilidade</strong><p>Os mesmos resultados devem ser obtidos com os mesmos métodos, ainda que com diferentes instrumentos.</p></li>
+                <li><strong>Justificabilidade</strong><p>As decisões são justificadas como as melhores escolhas para obter toda a potencial evidência digital.</p></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="methodology-notes">
+            <article class="methodology-note">
+              <h3>Cadeia de custódia</h3>
+              <p>Registro cronológico de quem teve contato com a evidência, quando e por quê. Cada ação é documentada, do recebimento até a guarda. No processo civil não é exigência legal, mas é adotada em toda perícia.</p>
+            </article>
+            <article class="methodology-note">
+              <h3>Limitações</h3>
+              <p>A conclusão depende do material recebido. Quando há apenas cópia, captura de tela ou exportação, o laudo informa o que não é possível afirmar e por quê.</p>
+            </article>
+            <article class="methodology-note">
+              <h3>Imparcialidade e impedimentos</h3>
+              <p>Havendo impedimento ou suspeição, a nomeação não é aceita, e o juízo é comunicado caso a situação surja depois (CPC, arts. 148 e 467).</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section chain-section" id="custodia">
+      <section class="section formation-section" id="formacao">
         <div class="container">
           <div class="section-heading centered revelar">
-            <h2>Cadeia de custódia</h2>
+            <h2>Formação</h2>
           </div>
 
-          <div class="document-stage">
-            <article class="notepad document-visual revelar" aria-label="Registro de atividades da análise pericial">
-              <div class="notepad-header">
-                <span class="notepad-indicator"></span>
-                <strong>REGISTRO DE ANÁLISE</strong>
-              </div>
-              <ol class="notepad-logs">
-                <li data-text="[14-10-2025 09:12] Recebimento de mídia e conferência do lacre.">[14-10-2025 09:12] Recebimento de mídia e conferência do lacre.</li>
-                <li data-text="[14-10-2025 09:25] Registro fotográfico do dispositivo recebido.">[14-10-2025 09:25] Registro fotográfico do dispositivo recebido.</li>
-                <li data-text="[14-10-2025 09:41] Catalogação da evidência digital.">[14-10-2025 09:41] Catalogação da evidência digital.</li>
-                <li data-text="[14-10-2025 10:03] Isolamento do dispositivo para análise.">[14-10-2025 10:03] Isolamento do dispositivo para análise.</li>
-                <li data-text="[14-10-2025 10:28] Aquisição forense dos dados do equipamento.">[14-10-2025 10:28] Aquisição forense dos dados do equipamento.</li>
-                <li data-text="[14-10-2025 11:15] Verificação da integridade da imagem.">[14-10-2025 11:15] Verificação da integridade da imagem.</li>
-                <li data-text="[14-10-2025 11:37] Indexação dos arquivos extraídos.">[14-10-2025 11:37] Indexação dos arquivos extraídos.</li>
-                <li data-text="[14-10-2025 14:06] Análise de artefatos do sistema operacional.">[14-10-2025 14:06] Análise de artefatos do sistema operacional.</li>
-                <li data-text="[15-10-2025 09:18] Revisão dos registros de atividade.">[15-10-2025 09:18] Revisão dos registros de atividade.</li>
-                <li data-text="[15-10-2025 10:02] Armazenamento seguro e encerramento da análise.">[15-10-2025 10:02] Armazenamento seguro e encerramento da análise.</li>
-              </ol>
-            </article>
-            <p class="document-placeholder revelar">
-              Um perito digital não só se responsabiliza pela evidência digital e seu manuseio, mas
-              também por devidas precauções no local do incidente ou da coleta, documentação de cada
-              ação feita, principalmente a respeito da cronologia de movimento e do manuseio da
-              potencial evidência digital, caracterizados pela <strong>cadeia de custódia</strong>.
-            </p>
-            <article
-              class="custody-form document-visual revelar"
-              aria-label="Exemplo animado de formulário de cadeia de custódia"
-            >
-              <h3 class="custody-form-title">Evidência eletrônica</h3>
-              <p class="custody-form-subtitle">Formulário de cadeia de custódia</p>
+          <p class="formation-intro centered revelar">
+            Antes da perícia, trabalhei por 4 anos como desenvolvedor de software destinado ao contencioso de ações cíveis e trabalhistas. Contei, até aqui, com professores excelentes e agradeço-lhes imensamente pelo aprendizado que, hoje, posso compartilhar aqui.
+          </p>
 
-              <div class="custody-fields">
-                <div class="custody-field">
-                  <span class="custody-label">Nº do processo</span>
-                  <span class="custody-value" data-text="0001234-56.2025.8.26.0100">0001234-56.2025.8.26.0100</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Juízo</span>
-                  <span class="custody-value" data-text="1ª Vara Cível">1ª Vara Cível</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Vara e comarca</span>
-                  <span class="custody-value" data-text="Foro Central de São Paulo">Foro Central de São Paulo</span>
-                </div>
-                <div class="custody-field custody-field-wide">
-                  <span class="custody-label">Nome do perito</span>
-                  <span class="custody-value" data-text="João Topan">João Topan</span>
-                </div>
-              </div>
+          <div class="education-timeline" aria-label="Linha do tempo da formação">
+            <div class="timeline-axis" aria-hidden="true">
+              <span class="timeline-year year-2021">2021</span>
+              <span class="timeline-year year-2025">2025</span>
+              <span class="timeline-year year-2026">2026</span>
+              <span class="timeline-year year-2027">2027</span>
+            </div>
+            <div class="timeline-entries">
+              <article class="education-entry revelar">
+                <img src="assets/img/usp.svg" alt="Logo da Universidade de São Paulo" />
+                <h3>Universidade de São Paulo (USP)</h3>
+                <p>Bacharelado em Sistemas de Informação</p>
+              </article>
+              <article class="education-entry revelar">
+                <img src="assets/img/fiap.svg" alt="Logo da Faculdade de Informática e Administração Paulista" />
+                <h3>Faculdade de Informática e Administração Paulista (FIAP)</h3>
+                <p>MBA em Cibersegurança</p>
+              </article>
+              <article class="education-entry revelar">
+                <img src="assets/img/afd.png" alt="Logo da Academia Forense Digital" />
+                <h3>Academia Forense Digital (AFD)</h3>
+                <p>Mais de 80 horas de treinamento forense na Academia Forense Digital (AFD), em andamento</p>
+              </article>
+            </div>
+          </div>
 
-              <h4 class="custody-section-title">Dados do equipamento</h4>
-              <div class="custody-fields custody-equipment-fields">
-                <div class="custody-field">
-                  <span class="custody-label">Marca</span>
-                  <span class="custody-value" data-text="Dell">Dell</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Descrição</span>
-                  <span class="custody-value" data-text="Notebook Dell Inspiron 15">Notebook Dell Inspiron 15</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Fabricante</span>
-                  <span class="custody-value" data-text="Dell">Dell</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Modelo</span>
-                  <span class="custody-value" data-text="Inspiron 15 3511">Inspiron 15 3511</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Núm. de série</span>
-                  <span class="custody-value" data-text="8F3K9V2">8F3K9V2</span>
-                </div>
-              </div>
-
-              <h4 class="custody-section-title">Detalhes do equipamento</h4>
-              <div class="custody-fields custody-details-fields">
-                <div class="custody-field">
-                  <span class="custody-label">Data/hora</span>
-                  <span class="custody-value" data-text="14/10/2025 09:18">14/10/2025 09:18</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Criado por</span>
-                  <span class="custody-value" data-text="João Topan">João Topan</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Método usado</span>
-                  <span class="custody-value" data-text="Imagem forense">Imagem forense</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Nome da imagem</span>
-                  <span class="custody-value" data-text="cliente_20251014.E01">cliente_20251014.E01</span>
-                </div>
-                <div class="custody-field">
-                  <span class="custody-label">Drive</span>
-                  <span class="custody-value" data-text="SSD 512 GB">SSD 512 GB</span>
-                </div>
-                <div class="custody-field custody-field-wide">
-                  <span class="custody-label">HASH</span>
-                  <span class="custody-value" data-text="a3f9e2d4b6c7f8e9d0e1f2a3b4c5d6e7f8a9b0c1">a3f9e2d4b6c7f8e9d0e1f2a3b4c5d6e7f8a9b0c1</span>
-                </div>
-              </div>
-
-              <h4 class="custody-section-title">Cadeia de custódia</h4>
-              <table class="custody-handoffs">
-                <thead>
-                  <tr>
-                    <th>Destino</th>
-                    <th>Data/hora</th>
-                    <th>Origem</th>
-                    <th>Destino</th>
-                    <th>Motivo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><span class="custody-value" data-text="Laboratório Forense">Laboratório Forense</span></td>
-                    <td><span class="custody-value" data-text="14/10/2025 09:30">14/10/2025 09:30</span></td>
-                    <td><span class="custody-value" data-text="João Topan">João Topan</span></td>
-                    <td><span class="custody-value" data-text="Mariana Silva">Mariana Silva</span></td>
-                    <td><span class="custody-value" data-text="Recebimento do material">Recebimento do material</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="custody-value" data-text="Laboratório Forense">Laboratório Forense</span></td>
-                    <td><span class="custody-value" data-text="14/10/2025 11:15">14/10/2025 11:15</span></td>
-                    <td><span class="custody-value" data-text="Mariana Silva">Mariana Silva</span></td>
-                    <td><span class="custody-value" data-text="Carlos Almeida">Carlos Almeida</span></td>
-                    <td><span class="custody-value" data-text="Análise pericial">Análise pericial</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="custody-value" data-text="Arquivo Técnico">Arquivo Técnico</span></td>
-                    <td><span class="custody-value" data-text="14/10/2025 17:40">14/10/2025 17:40</span></td>
-                    <td><span class="custody-value" data-text="Carlos Almeida">Carlos Almeida</span></td>
-                    <td><span class="custody-value" data-text="João Topan">João Topan</span></td>
-                    <td><span class="custody-value" data-text="Finalização da cadeia">Finalização da cadeia</span></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="custody-signatures" aria-label="Responsáveis pela entrega, recebimento e análise">
-                <div><strong>Entrega</strong><span>João Topan</span><small>14/10/2025</small></div>
-                <div><strong>Recebimento</strong><span>Mariana Silva</span><small>14/10/2025</small></div>
-                <div><strong>Análise</strong><span>Carlos Almeida</span><small>15/10/2025</small></div>
-              </div>
-            </article>
+          <div class="training-content revelar">
+            <h3>Conteúdo dos treinamentos</h3>
+            <ul class="training-list">
+              <li><strong>Aquisição e preservação</strong><p>Cópia forense física e lógica, bloqueio de escrita, verificação por hash e aquisição de memória. Uso do FTK Imager.</p></li>
+              <li><strong>Processamento e análise</strong><p>Autopsy, IPED e KAPE.</p></li>
+              <li><strong>Sistemas e artefatos</strong><p>Windows, Linux e noções de macOS. Sistemas de arquivos FAT32 e NTFS, recuperação de dados, análise de linha de tempo e de máquinas virtuais.</p></li>
+              <li><strong>Memória</strong><p>Análise com Volatility.</p></li>
+              <li><strong>Dispositivos móveis</strong><p>Aquisição e análise de aparelhos Android e iOS. Uso do Cellebrite.</p></li>
+              <li><strong>E-mails, nuvem e web</strong><p>Análise de e-mails, evidências em nuvem e em sites, metadados e pesquisa em fontes abertas (OSINT).</p></li>
+              <li><strong>Redes</strong><p>Captura e interceptação de tráfego, análise de registros de equipamentos de rede e identificação de indicadores de comprometimento. Uso do Wireshark.</p></li>
+              <li><strong>Malware</strong><p>Identificação por análise estática e dinâmica em ambiente isolado.</p></li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section class="section report-section" id="laudo">
+      <section class="section report-section" id="laudos">
         <div class="container">
-          <div class="section-heading report-heading revelar">
-            <h2>Laudo pericial</h2>
-          </div>
-
-          <div class="report-layout">
-            <div class="report-art revelar">
-              <iframe
-                class="report-pdf"
-                name="laudo-pdf-viewer"
-                src="about:blank"
-                data-src="assets/img/laudo_exemplo.pdf"
-                title="Visualizador do modelo de laudo pericial em PDF"
-              >
-                <p>
-                  Seu navegador não conseguiu exibir o PDF.
-                  <a href="assets/img/laudo_exemplo.pdf">Abrir o laudo pericial</a>.
-                </p>
-              </iframe>
+          <div class="report-panel revelar">
+            <div class="section-heading centered">
+              <h2>Laudos de exemplo</h2>
             </div>
-
-            <div class="report-content">
-              <p class="report-intro revelar">
-                O laudo deve ser estruturado de forma compreensível, verificável por outro perito e
-                objetivo na resposta aos quesitos.
-              </p>
-              <div class="report-bullets revelar">
-                <ol>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=1" target="laudo-pdf-viewer">
-                      <strong>Identificação</strong><p>Processo, partes, juízo, nomeação e data.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=2" target="laudo-pdf-viewer">
-                      <strong>Objeto da perícia</strong><p>O que foi determinado pelo juízo e o escopo do exame.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=3" target="laudo-pdf-viewer">
-                      <strong>Material examinado</strong><p>Descrição de cada item, com identificação única, estado no recebimento e hashes.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=3" target="laudo-pdf-viewer">
-                      <strong>Metodologia</strong><p>Procedimentos e ferramentas, com versões, e as normas adotadas.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=5" target="laudo-pdf-viewer">
-                      <strong>Análise técnica</strong><p>Achados organizados, com evidências e referências.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=11" target="laudo-pdf-viewer">
-                      <strong>Resposta aos quesitos</strong><p>Cada quesito reproduzido e respondido de forma direta e fundamentada, remetendo à análise.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=14" target="laudo-pdf-viewer">
-                      <strong>Limitações e ressalvas</strong><p>O que não foi possível verificar e por quê.</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="report-section-link" href="assets/img/laudo_exemplo.pdf#page=14" target="laudo-pdf-viewer">
-                      <strong>Anexos</strong><p>Logs, capturas de tela, relatórios de ferramenta, termos de cadeia de custódia.</p>
-                    </a>
-                  </li>
-                </ol>
-              </div>
+            <p class="report-intro">
+              Os laudos abaixo são fictícios, elaborados a partir de informações simuladas, e não se referem a nenhum processo real. Servem para mostrar como estruturo a análise e respondo aos quesitos. O laudo empresarial foi baseado em um laboratório da plataforma <a href="https://cyberdefenders.org" target="_blank" rel="noopener noreferrer">CyberDefenders</a>.
+            </p>
+            <p class="report-line">
+              Todos seguem a mesma estrutura: identificação, objeto da perícia, material examinado, metodologia, análise técnica, resposta aos quesitos, limitações e anexos.
+            </p>
+            <div class="report-actions" aria-label="Laudos de exemplo por esfera">
+              <a class="button button-primary" href="assets/pdf/laudo_civel.pdf" target="_blank" rel="noopener noreferrer">Cível</a>
+              <a class="button button-primary" href="assets/pdf/laudo_familia.pdf" target="_blank" rel="noopener noreferrer">Família e Sucessões</a>
+              <a class="button button-primary" href="assets/img/laudo_exemplo.pdf" target="_blank" rel="noopener noreferrer">Empresarial</a>
+              <a class="button button-primary" href="assets/pdf/laudo_trabalhista.pdf" target="_blank" rel="noopener noreferrer">Trabalhista</a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section case-section" id="caso-simulado">
-        <div class="container">
-          <div class="case-card revelar">
-            <span class="case-tag">Caso simulado</span>
-            <h2>Mapeamento da cadeia de ataque completa</h2>
-            <p>
-              Uma empresa que mantém dados críticos de clientes reportou um incidente de segurança significativo: um ataque de ransomware, numa cadeia de ataque sofisticada.
-            </p>
-            <p>
-              Acima, deixo um exemplo de laudo pericial, elaborado a partir de informações fictícias e baseado em um laboratório de segurança oferecido pela plataforma <a href="https://cyberdefenders.org" target="_blank" rel="noopener noreferrer">cyberdefenders</a>.
-            </p>
           </div>
         </div>
       </section>
@@ -479,8 +281,7 @@
             <div class="contact-copy revelar">
               <h2>Entre em contato</h2>
               <p>
-                Para dúvidas técnicas, solicitações de materiais ou comentários sobre metodologias,
-                utilize o seguinte formulário.
+                Para receber meu currículo completo, envie uma mensagem pelo formulário abaixo. Fico à disposição para dúvidas técnicas, solicitações de materiais ou comentários sobre metodologias.
               </p>
             </div>
 
@@ -516,11 +317,6 @@
                 <textarea id="message" name="message" rows="5" required></textarea>
               </div>
 
-              <div class="field-group honeypot">
-                <label for="website">Website</label>
-                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
-              </div>
-
               <button type="submit">Enviar</button>
               <p id="form-status" class="form-status" aria-live="polite"></p>
             </form>
@@ -529,27 +325,13 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="topo">
       <div class="container footer-grid">
-        <div class="footer-profile">
-          <img
-            class="footer-avatar"
-            src="assets/img/footer.jpg"
-            alt="Retrato de João Vitor Topan"
-            width="160"
-            height="160"
-          />
-          <div class="footer-profile-copy">
-            <p class="footer-title">João Vitor Topan</p>
-            <p>
-              Obrigado por visitar este portfolio. Sou formado em Sistemas de Informação pela
-              Universidade de São Paulo (USP), completei um MBA em Cibersegurança na Faculdade de
-              Informática e Administração Paulista (FIAP) e, hoje, depois de ter trabalhado como
-              desenvolvedor de software por alguns anos, estudo na Academia Forense Digital (AFD) a
-              perícia digital e suas subáreas.
-            </p>
-          </div>
+        <div class="footer-identity">
+          <p class="footer-title">João Vitor Topan <span>© <span id="current-year"></span></span></p>
+          <p>Cadastrado como auxiliar da Justiça no TJSP e no TRT-2</p>
         </div>
+        <a class="button button-secondary footer-top-link" href="#inicio">Voltar ao topo</a>
       </div>
     </footer>
 
